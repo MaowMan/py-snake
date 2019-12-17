@@ -1,6 +1,6 @@
 game:
-  height: 32
-  width: 32
+  height: 64
+  width: 64
   speed: 50
   lenth: 20
   fruitscore: 1
