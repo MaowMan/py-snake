@@ -1,0 +1,19 @@
+game:
+  height: 32
+  width: 32
+  speed: 50
+  lenth: 20
+  fruitscore: 1
+  fruitfreq: 2000
+
+color:
+  nothing: "white"
+  snake: "green"
+  fruit: "red"
+
+word:
+  title: "Python貪食蛇"
+  end: "你輸了"
+  intile: "O"
+  font: "helvetica"
+  size: 5
