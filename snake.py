@@ -61,6 +61,7 @@ class main(object):
             del self.body[-1]
         if self.head in self.fruits:
             self.lenth+=self.fruitscore
+            print(self.lenth)
             self.fruits.remove(self.head)
         self.root.after(self.speed,self.update)
     def change_color(self,coords,state):
