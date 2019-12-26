@@ -10,8 +10,9 @@ class main(object):
         self.root=Tk()
         self.setup()
         self.widget()
+        self.scoreboard()
         self.snake()
-        self.loop()
+        self.begin()
     def setup(self):
         self.w=self.config["game"]["width"]
         self.h=self.config["game"]["height"]
@@ -19,8 +20,10 @@ class main(object):
         self.lenth=self.config["game"]["lenth"]
         self.fruitscore=self.config["game"]["fruitscore"]
         self.fruitfreq=self.config["game"]["fruitfreq"]
-        self.scoreVar=IntVar(0)
+        self.scoreVar=StringVar()
+        self.scoreVar.set("NULL")
         self.font=tkfont.Font(family=self.config["word"]["font"],size=self.config["word"]["size"])
+        self.scorefont=tkfont.Font(family=self.config["word"]["font_2"],size=self.config["word"]["size_2"])
     def widget(self):
         self.root.title(self.config["word"]["title"])
         self.labels=[]
@@ -31,6 +34,14 @@ class main(object):
                 self.change_color((y,x),"nothing")
                 self.labels[y][x].grid(row=y,column=x)
                 #print("({},{})".format(y,x))
+    def scoreboard(self):
+        self.scorelabel=Label(self.root,textvariable=self.scoreVar,font=self.scorefont)
+        self.scorelabel.config()
+        self.scorelabel.grid(columnspan=self.w)
+    def begin(self):
+        self.scoreVar.set("按下空白鍵已開始")
+        self.root.bind("<space>",lambda x: self.loop())
+        self.root.mainloop()
     def snake(self):
         self.head=(self.h//2,self.w//2)
         self.body=[]
@@ -44,7 +55,6 @@ class main(object):
         self.root.bind("<d>",lambda x: self.change_direction((0,1)))
         self.root.after(self.fruitfreq,self.genfruit)
         self.root.after(self.speed,self.update)
-        self.root.mainloop()
     def update(self):
         self.head=(self.head[0]+self.direction[0],self.head[1]+self.direction[1])
         self.direction_flag=True
@@ -63,6 +73,7 @@ class main(object):
             self.lenth+=self.fruitscore
             print(self.lenth)
             self.fruits.remove(self.head)
+        self.scoreVar.set("長度：{} cm".format(str(self.lenth)))
         self.root.after(self.speed,self.update)
     def change_color(self,coords,state):
         if coords[0]<0 or coords[1]<0:
