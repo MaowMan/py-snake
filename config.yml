@@ -2,7 +2,7 @@ game:
   height: 64
   width: 64
   speed: 50
-  lenth: 20
+  lenth: 5
   fruitscore: 1
   fruitfreq: 2000
 
@@ -15,5 +15,8 @@ word:
   title: "Python貪食蛇"
   end: "你輸了"
   intile: "O"
+  scorelabel: "長度："
   font: "helvetica"
   size: 5
+  font_2: "helvetica"
+  size_2: 20
